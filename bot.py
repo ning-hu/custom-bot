@@ -19,7 +19,6 @@ bot = commands.Bot(command_prefix=PREFIX, intents=intents)
 
 # Adds role to a specified list of users. If role does not exist, create it.
 @bot.command(pass_context=True, name='addrole', help=f'Adds role to the list of following users. If the role does not exist, the bot will create the role')
-@commands.has_permissions(administrator=True)
 async def add_role(ctx, role, *users):
     if not can_call(ctx):
         await ctx.message.channel.send(f'You need the role {str(ROLE)} to add roles.') 
