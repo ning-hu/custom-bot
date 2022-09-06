@@ -11,6 +11,8 @@ Custom Discord bot for personal use. Hosted on Raspberry Pi.
     - Message content intent
   - Permissions
     - Manage roles
+    
+Generate URL by going to OAuth2 > URL Generator > Bot > Manage Roles
 
 ## Environment Variables
 - `DISCORD_TOKEN`: Token from Discord developer portal
