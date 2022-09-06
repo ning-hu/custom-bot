@@ -8,6 +8,7 @@ Custom Discord bot for personal use. Hosted on Raspberry Pi.
   - Privileged Gateway Intents
     - Presence intent
     - Server members intent
+    - Message content intent
   - Permissions
     - Manage roles
 
