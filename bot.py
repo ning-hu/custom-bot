@@ -21,14 +21,14 @@ bot = commands.Bot(command_prefix=PREFIX, intents=intents)
 @bot.command(pass_context=True, name='addrole', help=f'Adds role to the list of following users. If the role does not exist, the bot will create the role')
 async def add_role(ctx, role, *users):
     if not can_call(ctx):
-        await ctx.message.channel.send(f'You need the role {ROLE} to add roles.') 
+        await ctx.message.channel.send(f'{ctx.author.mention} You need the role {ROLE} to add roles.') 
         return
 
     if not is_valid_role(role):
-        await ctx.message.channel.send(f'Role must match ^pay[0-9]+.') 
+        await ctx.message.channel.send(f'{ctx.author.mention} Role must match ^pay[0-9]+.') 
         return
 
-    message = f'Finished adding role {role} to the specified users.\n'
+    message = f'{ctx.author.mention} Finished adding role {role} to the specified users.\n'
 
     # Create role if it doesn't exist.
     if not discord.utils.get(ctx.guild.roles, name=role):
@@ -46,18 +46,18 @@ async def add_role(ctx, role, *users):
 @bot.command(pass_context=True, name='removerole', help='Removes role from all users')
 async def remove_role(ctx, role):
     if not can_call(ctx):
-        await ctx.message.channel.send(f'You need the role {ROLE} to remove roles.') 
+        await ctx.message.channel.send(f'{ctx.author.mention} You need the role {ROLE} to remove roles.') 
         return
 
     if not is_valid_role(role):
-        await ctx.message.channel.send(f'Role must match ^pay[0-9]+.') 
+        await ctx.message.channel.send(f'{ctx.author.mention} Role must match ^pay[0-9]+.') 
         return
 
     if not discord.utils.get(ctx.guild.roles, name=role):
-        await ctx.message.channel.send(f'Role must exist.') 
+        await ctx.message.channel.send(f'{ctx.author.mention} Role must exist.') 
         return
 
-    message = f'Finished removing role {role} from all users\n'
+    message = f'{ctx.author.mention} Finished removing role {role} from all users\n'
 
     role = discord.utils.get(ctx.guild.roles, name=role)
     members = role.members
