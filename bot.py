@@ -117,9 +117,9 @@ async def on_voice_state_update(member, before, after):
 
     message = ""
     if before.channel is not None and in_category(before.channel.category_id):
-        message += f'{member.mention} left {before.channel.name}\n'
+        message += f'{member.mention} ({member.name}) left {before.channel.name}\n'
     if after.channel is not None and in_category(after.channel.category_id):
-        message += f'{member.mention} joined {after.channel.name}'
+        message += f'{member.mention} ({member.name}) joined {after.channel.name}'
 
     embed = discord.Embed(description=message)
     channel = bot.get_channel(CHANNEL)
