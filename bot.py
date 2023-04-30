@@ -112,7 +112,7 @@ async def register_vc(ctx, id:int=None):
 
 @bot.event
 async def on_voice_state_update(member, before, after):
-    if not CHANNEL or member.bot or before.channel.id == after.channel.id:
+    if not CHANNEL or member.bot or (before.channel is not None and after.channel is not None and before.channel.id == after.channel.id):
         return
 
     message = ""
