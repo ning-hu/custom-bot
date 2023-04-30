@@ -11,6 +11,7 @@ Custom Discord bot for personal use. Hosted on Raspberry Pi.
     - Message content intent
   - Permissions
     - Manage roles
+    - Send messages
     
 Generate URL by going to OAuth2 > URL Generator > Bot > Manage Roles
 
@@ -27,3 +28,7 @@ Adds role `rolename` to all users listed
 > `!remove rolename`
 
 Removes role `rolename` from all users
+
+> `!registervc`
+
+Registers a text channel as the logging channel for voice channel joins/leaves/moves
