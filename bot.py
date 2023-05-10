@@ -30,19 +30,21 @@ async def add_role(ctx, role, *users):
         await ctx.message.channel.send(f'{ctx.author.mention} Role must match ^pay[0-9]+.') 
         return
 
-    message = f'{ctx.author.mention} Finished adding role {role} to the specified users.\n'
+    message = ""
 
     # Create role if it doesn't exist.
     if not discord.utils.get(ctx.guild.roles, name=role):
         await ctx.guild.create_role(name=role)
 
+    i = 0
     for member in ctx.message.mentions:
         try:
             await member.add_roles(discord.utils.get(ctx.guild.roles, name=role))
+            i = i + 1
         except Exception as e:
-            message += f'\nFailed to add role {role} to {member.mention} with error {e}'
+            message += f'\nFailed to add role {role} to {member.mention} with error {e}.'
 
-    await ctx.message.channel.send(message)    
+    await ctx.message.channel.send(f'{ctx.author.mention} {message} Finished adding role {role} to {i} members.')
 
 # Deletes role from all users.
 @bot.command(pass_context=True, name='removerole', help='Removes role from all users')
@@ -59,17 +61,18 @@ async def remove_role(ctx, role):
         await ctx.message.channel.send(f'{ctx.author.mention} Role must exist.') 
         return
 
-    message = f'{ctx.author.mention} Finished removing role {role} from all users\n'
-
+    message = ""
     role = discord.utils.get(ctx.guild.roles, name=role)
     members = role.members
+    i = 0
     for member in members:
         try:
             await member.remove_roles(role)
+            i = i + 1
         except Exception as e:
             message += f'\nFailed to remove role {role} to {member.mention} with error {e}'
 
-    await ctx.message.channel.send(message)
+    await ctx.message.channel.send(f'{ctx.author.mention} {message} Finished removing role {role} from {i} members.')
 
 # Whether the author can use the bot
 def can_call(ctx):
